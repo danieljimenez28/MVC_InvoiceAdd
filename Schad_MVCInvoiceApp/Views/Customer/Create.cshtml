@@ -1,0 +1,48 @@
+﻿@model Schad_MVCInvoiceApp.Entitades.Customer
+
+@{
+    ViewBag.Title = "Create new Customer";
+}
+
+<h2 class="viewbag-style"><i>@ViewBag.Title</i></h2>
+<div class="container">
+    @using (Html.BeginForm("Create", "Customer", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="form-group col-md-12">
+                @Html.Label("Customer name")
+                @Html.EditorFor(model => model.CustName, new { htmlAttributes = new { @class = "form-control", placeholder = "Write customer name." } })
+                @Html.ValidationMessageFor(model => model.CustName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Adress)
+                @Html.EditorFor(model => model.Adress, new { htmlAttributes = new { @class = "form-control", placeholder = "Write customer adress." } })
+                @Html.ValidationMessageFor(model => model.Adress, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-6">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        @Html.Label("Customer type")
+                        @Html.DropDownListFor(model => model.CustomerTypeId, @ViewBag.CustomerTypeList as List<SelectListItem>, "Select Type", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CustomerTypeId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-12">
+                        @Html.Label("Active")
+                        @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <input type="submit" value="Save Customer" class="btn btn-success btn-lg btn-block" />
+            </div>
+        </div>
+
+    }
+
+    <div>
+        @Html.ActionLink("Atras", "Index", "Customer", new { id = "btnAtras" }, new { @class = "btn btn-danger" })
+    </div>
+
+</div>
+

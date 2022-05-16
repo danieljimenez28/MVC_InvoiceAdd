@@ -1,0 +1,86 @@
+﻿@model Schad_MVCInvoiceApp.Entitades.InvoiceDetail_VM
+
+<h2 class="viewbag-style"><i>Invoice Header</i></h2>
+
+<div class="container">
+
+    @using (Html.BeginForm("Create", "Invoice", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.Label("Customer")
+                @Html.DropDownListFor(model => model.CustomerId_Header, Model.CustomerListHeader ?? new List<SelectListItem>(), "Select Customer", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group col-md-2">
+                @Html.Label("TotalITBIS")
+                <p class="form-control">0</p>
+            </div>
+            <div class="form-group col-md-2">
+                @Html.Label("Sub Total")
+                <p class="form-control">@ViewBag.SubTotal_Header</p>
+            </div>
+            <div class="form-group col-md-2">
+                @Html.Label("Total")
+                <p class="form-control">@ViewBag.SubTotal_Header</p>
+            </div>
+        </div>
+
+        <h2 class="viewbag-style"><i>Invoice Detail</i></h2>
+
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.Label("Item Description")
+                @Html.EditorFor(model => model.ItemDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ItemDescription, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-3">
+                @Html.LabelFor(model => model.Qty)
+                @Html.EditorFor(model => model.Qty, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Qty, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-3">
+                @Html.LabelFor(model => model.Price)
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-2">
+                @Html.Label(" ")
+                <input type="submit" value="Add" id="btnAddDetalle" class="btn btn-success btn-lg btn-block" />
+            </div>
+        </div>
+
+        @Html.Partial("_InvDetailList", (List<Schad_MVCInvoiceApp.Entitades.InvoiceDetail>)ViewBag.TempDetail)
+
+        @if (((List<Schad_MVCInvoiceApp.Entitades.InvoiceDetail>)ViewBag.TempDetail) != null)
+        {
+            <div class="form-group col-md-12">
+                @Html.ActionLink("Save Invoice", "SaveInvoice", "Invoice", new { id="btnSaveInvoice" }, new { @class = "btn btn-success btn-lg btn-block"})
+            </div>
+        }
+
+        <div class="form-group col-md-12">
+            @Html.ActionLink("Atras", "Index", "Invoice", new { id = "btnAtras" }, new { @class = "btn btn-danger" })
+        </div>
+    }
+</div>
+
+@section Scripts{
+    <script>
+        //let header_cutomerId = document.getElementById("CustomerId_Detail");
+        //let btnAddDetalle = document.getElementById("btnAddDetalle");
+
+            ////console.log(header_cutomerId.target);
+            //header_cutomerId.addEventListener('change', (e) => {
+            //    //console.log(e.target.value);
+
+            //    if (e.target.value == '') {
+            //        //console.log('no valido');
+            //        btnAddDetalle.setAttribute("disabled", "disabled");
+            //    }
+            //    else {
+            //        btnAddDetalle.removeAttribute("disabled");
+            //    }
+            //});
+    </script>
+}

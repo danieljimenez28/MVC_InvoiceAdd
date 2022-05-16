@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Schad_MVCInvoiceApp.Entitades.Vw_SalesDetail>
+
+@{
+    ViewBag.Title = "Invoice List";
+}
+
+<h2 class="viewbag-style"><i>@ViewBag.Title</i></h2>
+
+<a href="/Invoice/Create" class="btn btn-primary createBtn">Create new Invoice</a>
+
+<table class="table">
+    <tr>
+        <th>Invoice No.</th>
+        <th>Date</th>
+        <th>Customer</th>
+        <th>Customer Type</th>
+        <th>ITbis</th>
+        <th>Sub Total</th>
+        <th>Total</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(itemM => item.InvoiceNo)</td>
+            <td>@Html.DisplayFor(itemM => item.InvoiceDate)</td>
+            <td>@Html.DisplayFor(itemM => item.Customer)</td>
+            <td>@Html.DisplayFor(itemM => item.CustomerType)</td>
+            <td>@Html.DisplayFor(itemM => item.TotalItbis)</td>
+            <td>@Html.DisplayFor(itemM => item.SubTotal)</td>
+            <td>@Html.DisplayFor(itemM => item.Total)</td>
+        </tr>
+    }
+</table>
+
+<p class="ballCountRecords"><i>@ViewBag.Total Sales</i></p>

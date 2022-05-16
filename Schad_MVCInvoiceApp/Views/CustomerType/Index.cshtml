@@ -1,0 +1,28 @@
+﻿@model List<Schad_MVCInvoiceApp.Entitades.CustomerType>
+
+@{
+    ViewBag.Title = "Customer Type List";
+}
+
+<h2 class="viewbag-style"><i>@ViewBag.Title</i></h2>
+
+<a href="/CustomerType/Create" class="btn btn-primary createBtn">Create new Type</a>
+
+<div class="form-group col-md-12">
+    <font class="text-danger">@ViewBag.mensaje</font>
+</div>
+
+<table class="table">
+    <tr>
+        <th>Description</th>
+        @*<th></th>*@
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(itemM => item.Description)</td>
+        </tr>
+    }
+</table>
+
+<p class="ballCountRecords"><i>@ViewBag.Total Customer Types</i></p>

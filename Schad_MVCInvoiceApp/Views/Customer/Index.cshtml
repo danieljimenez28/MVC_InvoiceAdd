@@ -1,0 +1,44 @@
+﻿@model List<Schad_MVCInvoiceApp.Entitades.Customer>
+
+@{
+    ViewBag.Title = "Customer List";
+}
+
+<h2 class="viewbag-style"><i>@ViewBag.Title</i></h2>
+
+<a href="/Customer/Create" class="btn btn-primary createBtn">Create new customer</a>
+
+<div class="form-group col-md-12">
+    <font class="text-danger">@ViewBag.mensaje</font>
+</div>
+
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Active</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(itemM => item.CustName)</td>
+            <td>@Html.DisplayFor(itemM => item.Adress)</td>
+            <td>@Html.DisplayFor(itemM => item.Status)</td>
+            @if (item.Status)
+            {
+                <td>
+                    @Html.ActionLink("DesActivar", "ActivarDesActivar", new { id = item.Id }, new { @class = "btn btn-danger" })
+                </td>
+            }
+            else
+            {
+                <td>
+                    @Html.ActionLink("Activar", "ActivarDesActivar", new { id = item.Id }, new { @class = "btn btn-primary" })
+                </td>
+            }
+        </tr>
+    }
+</table>
+
+<p class="ballCountRecords"><i>@ViewBag.Total Customers</i></p>
